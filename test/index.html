@@ -1,401 +1,569 @@
 <!DOCTYPE html>
-<html lang="ch">
+<html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css">
-	<title>Personal</title>
+	<link rel="stylesheet" href="http://at.alicdn.com/t/font_1161228_yskxw0he9co.css">
+	<title>Myquote&MyWheather</title>
 	<style>
 		*{
-			margin:0;
-			padding:0;
-			font-family: "Comic Sans MS", cursive, sans-serif;
+			margin: 0;
+			padding: 0;
+			color: #fff;
+			font-family:"arial,sans-serif,yahei";
+			list-style: none;
 		}
 		body{
-			/*background-image: url(./img/50.jpg);*/
+			background-color: #000;
+			width: 100%;
+			height: 100%;
+			transition: background-color 1s ease-out;
+		}
+		.title{
+			width: 100%;
+			height: 100px;
+			color: #fff;
+			text-align: center;
+			line-height: 100px;
+			font-family: "YouYuan";
+			font-weight: bold;
+			font-size: 40px;
+			background-color: transparent;
+		}
+		.middle{
+			position: relative;
+			width: 100%;
+			background-color: transparent;
+			margin-bottom: 10px;
+		}
+		.city{
+			position: absolute;
+			display: inline-block;
+			width: 150px;
+			height:35px;
+			background-color:#000;
+			color: #fff;
+			border:1px solid #fff;
+			margin-left:30px;
+			box-shadow: 2px 2px 10px #fff;
+			border-top-left-radius: 2px;
+			border-top-right-radius: 2px;
+		}
+		.city input{
+			display: inline-block;
+			width: 100%;
+			height: 100%;
+			font-size: 16px;
+			font-weight: bold;
+			line-height: 35px;
+			color: #000;
+			text-align: center;
+			background-color: #fff;
+			cursor:pointer;
+			border:0;
+			outline: none;
+			-webkit-appearance: none;
+			border-radius: 0;
+			transition: background-color 1s ease-out;
+		}
+		.city #city-id{
+			position: absolute;
+			left:-1000px;
+			width: 100%;
+			font-size: 12px;
+			color: #fff;
+			line-height: 25px;
+			background-color: transparent;
+			list-style: none;
+			font-weight: 100;
+			
+		}
+		#city-id li{
+			cursor: pointer;
+			color: #fff;
+			height: 25px;
+			width: 100%;
+			padding-left: 2px;
+			background-color: transparent;
+			border-left: 1px solid #fff; 
+			border-right: 1px solid #fff;
+			border-bottom: 1px solid #fff;
+
+		}
+		#city-id li:hover{
+			background-color: #fff!important;
+			color: #000!important;
+		}
+		.weather{
+			position: absolute;
+			margin-left:300px;
+			width: 360px;
+		}
+		.weather ul{
+			margin-top: 50px;
+			float: left;
+			width: 100%;
+			list-style: none;
+		}
+		.weather ul li{
+			float: left;
+			width: 160px;
+			height: 40px;
+			font-size: 20px;
+			line-height: 40px;
+			color: #fff;
+			text-align: center;
+		}
+		.weather ul li:first-child{
+			position: relative;
+			width: 200px;
+			height: 160px;
+			overflow: hidden;
+			text-align: center;
+			line-height: 160px;
+		}
+		.weather ul li:first-child i{
+			font-size: 100px;
+			font-weight: bold;
+		}
+		#quote{
+			margin-left: 700px;
+			position: relative;
+			display: inline-block;
+			width: 40%;
+			padding: 40px;
+			border:0px solid #000;
+			border-radius: 5px;
+			box-shadow: 5px 5px 20px #fff;
 			background-color: #fff;
 		}
-		.nav{
-			position: fixed;
-			top: 0;
-			left:0;
+		.content{
+			position: relative;
 			width: 100%;
-			height: 80px;
-			background-color: #722872;
-			border-bottom: 1px solid #592059;
-			z-index: 10001;
+			border:0px solid #000;
+			color: #000;
+			text-align: center;
+			font-size: 30px;
+			font-weight: 400;
+			z-index: 99;
 		}
-		.nav img{
-			float: left;
-			width: 60px;
+		.content i{
+			color: #000;
+			font-size: 30px!important;
+			margin-right: 5px;
+		}
+		.text{
+			color: #000;
+			font-family: "Cursive";
+		}
+		.name{
+			width: 100%;
 			height: 60px;
-			margin-left: 250px;
-			margin-top: 10px;
-			border-radius: 50%;
+			color: #000;
+			right: 0px;
+			z-index: 100;
+			padding:15px 5px;
+			box-sizing: border-box;
+			font-size: 18px;
+			font-weight: normal;
+		}
+		.name::after{
+			float: right;
+			right: 30px;
+			content: "-";
+			z-index: 100;
+			margin-right: 5px;
+		}
+		.name em{
+			float: right;
+			right: 0px;
+			content: "-";
+			color: #000;
+			z-index: 100;
+			font-style: normal;
+			font-weight: 100;
+		}
+		.icon{
+			list-style: none;
+			width: 100%;
+			height: 50px;
+			margin-top: 5px;
+		}
+		.icon li{
+			float: left;
+			height: 30px;
+			padding: 10px;
+			margin-right: 10px;
+			text-align: center;
+			line-height: 30px;
+			cursor: pointer;
+			font-size: 30px;
+			background-color: #000;
+			border:0px solid #000;
+			border-radius: 5px;
+			transition: background-color 1s ease-out;
+		}
+		.icon li:nth-child(3){
+			float: right;
+			font-size: 16px;
+			margin-right: 0px;
 			cursor: pointer;
 		}
-		.nav span{
-			display: inline-block;
-			margin-top: 40px;
-			font-size: 20px;
-			color: transparent;
-		}
-		.nav span:hover{
-			color: #777;
-		}
-		a{
-			text-decoration: none;
-			color: #777;
-		}
-		.nav ul{
-			float: right;
-			margin-right: 250px;
-		}
-		.nav ul li{
+		.future{
 			float: left;
-			list-style: none;
-			margin-top: 10px;
-			color: #777;
-			padding: 8px 15px;
+			width: 100%;
+			height: 200px;
+			box-sizing: border-box;
+			float: left;
+			margin-top: 15px;
+			padding: 10px 38px;
+		}
+		.future ul{
+			width: 100%;
+			height: 180px;
+			float: left;
+		}
+		.future > ul > li{
+			float: left;
+			width: 16%;
+			height: 180px;
+			margin-left: 3px;
+		}
+		.future > ul > li > ul > li{
+			width: 100%;
 			height: 30px;
 			line-height: 30px;
 			text-align: center;
-			margin-left: 2px;
-			cursor: pointer;
+			font-style: italic;
+			font-size: 14px;
 		}
-		.nav ul li:hover{
-			box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.1);
-			color:#333;
-		}
-		.nav ul li:hover a{
-			color:#333;
-		}
-		.nav ul li.active{
-			background-color: #eee;
-			color: #555;
-		}
-		.wrapper{
-			width: 80%;
-			margin: 81px auto 0px;
-			/*height: 1500px;*/
-			background-color: #eee;
-		}
-		.wrapper .con{
-			position: relative;
-			width: 100%;
-			height: 600px;
-			text-align: center;
-		}
-		.wrapper .con span{
-			display: inline-block;
-			text-align: center;
-			/*定位元素页面居中*/
-			/*position: absolute;
-			left: 50%;
-			top: 50%;
-			transform: translate(-50%,-50%);*/
-			color: #722872;
-			background-color: rgba(238,238,238,0.8);
-			padding: 0px 15px;
-			font-size: 40px;
-			font-family: "Comic Sans MS", cursive, sans-serif;
-		}
-		.about{
-			background-image: url(./img/24.jpg);
-			background-size: 100% 100%;
-		}
-		.portfolio{
-			background-image: url(./img/25.jpeg);
-			background-size: 100% 100%;
-		}
-		.contact{
-			background-image: url(./img/23.jpg);
-			background-size: 100% 100%;
-		}
-		.contact span{
-			background-color: transparent!important;
-		}
-		.last{
-			position: relative;
-			height: 200px;
-			background-color: #aaa;
-			text-align: center;
-			padding:30px 180px 0px 180px;
-			color: #fff;
-			z-index: 1001;
-		}
-		.last > div{
-			float: left;
-			width: 50%;
-			height: 100%;
-			font-size: 20px;
-			color: #fff;
-			text-align: center;
-		}
-		.last > div >span{
-			display: inline-block;
-			margin-bottom: 30px;
-			font-size: 24px;
-			font-weight: bold;
-		}
-		.brand i{
-			padding: 15px;
-			font-size: 18px;
-			border: 2px solid #fff;
-			border-radius: 50%;
-			transition: all .3s ease-in;
-		}
-		.brand i:hover{
-			background-color: #fff;
-			color: #722872;
-		}
-		.end{
-			position: relative;
-			left: 0px;
-			bottom: 0px;
-			background-color: #722872;
-			width: 100%;
+		.future > ul > li > ul > li:first-child{
 			height: 50px;
 			line-height: 50px;
+			margin-bottom: 10px;
+		}
+		.future > ul > li > ul > li > i{
+			font-size: 40px;
+			font-weight: bold;
+		}
+		#me{
+			position: relative;
 			text-align: center;
-			font-size: 20px;
-			color: #eee;
+			color: #fff;
+			font-size: 10px;
 		}
-		em{
-			font-style: normal!important;
-			color: #722872!important;
-		}
-		em:hover{
-			text-decoration: underline;
-		}
-		form{
-			position: relative;
-			width: 400px;
-			margin-top: 5px;
-			margin-left: 50px;
-			padding: 0px 50px 10px 50px;
-			text-align: left;
-			background-color: rgba(238,238,238,0.3); 
-		}
-		form div{
-			position: relative;
-			width: 90%;
-			margin:5px auto;
-			padding: 30px 0px 5px 0px;
-			border-bottom:1px solid #722872;
-			text-align: left;
-		}
-		form div.btn{
-			border-bottom: none;
-			padding: 0;
-			margin-top: 15px;
-			text-align: left;
-		}
-		form div.btn input{
-			display: inline-block;
-			width: 100px;
-			background-color: #722872;
-			color: #555;
-			cursor: pointer;
-		}
-		form div label{
-			z-index: 1000;
-			position: absolute;
-			display: inline-block;
-			font-size: 18px;
-			font-weight: bold;
-			color: #722872;
-			margin-top: 10px;
-			opacity: 0;
-			transition: all .3s ease-in;
-		}
-		form div label.uplabel{
-			position: absolute;
-			display: inline-block;
-			font-size: 18px;
-			font-weight: bold;
-			color: #722872;
-			margin-top: -24px;
-			opacity: 1;
-			transition: color .3s ease-in;
-			animation: mymove .3s ease-in;
-			-webkit-animation:mymove .3s ease-in;
-		}
-		@keyframes mymove
+		@keyframes mychange
 		{
-			from{
-				margin-top: 10px;
-				opacity: 0;
-			}
-			to{
-				margin-top: -24px;
-				opacity: 1;
-			}
+		from {opacity: 0;}
+		to {opacity: 1;}
 		}
-		@-webkit-keyframes mymove
+		@-moz-keyframes mychange /* Firefox */
 		{
-			from{
-				margin-top: 10px;
-				opacity: 0;
-			}
-			to{
-				margin-top: -24px;
-				opacity: 1;
-			}
+		from {opacity: 0;}
+		to {opacity: 1;}
 		}
-		form div input{
-			border:none;
-			position: relative;
-			font-size: 30px;
-			background-color: transparent;
-			width: 100%;
-			outline: none;
-			color: #555;
-			z-index: 10000;
+		@keyframes mychange2
+		{
+		from {opacity: 0;}
+		to {opacity: 1;}
 		}
-		form div textarea{
-			position: relative;
-			border:none;
-			font-size: 30px;
-			background-color: transparent;
-			width: 100%;
-			outline: none;
-			color: #555;
-			z-index: 10000;
+		@-moz-keyframes mychange2 /* Firefox */
+		{
+		from {opacity: 0;}
+		to {opacity: 1;}
 		}
-		/*input输入框placeholder的颜色
-		form label input::-webkit-input-placeholder{
-			color: #fff!important;
-		} */
 	</style>
 </head>
 <body>
-	<div class="nav">
-		<img src="./img/27.jpg" alt="" id="pic"><span>Gravity Falls</span>
+	<div class="title">Wheather & Quotes</div>
+	<div class="middle">
+		<div class="city">
+			<input type="text" placeholder="Pls choose the city" autocomplete="off" title="Change The City">
+			<ul id="city-id">
+			  <li>南阳</li>
+			  <li>洛阳</li>
+			  <li>北京</li>
+			  <li>上海</li>
+			  <li>天津</li>
+			  <li>重庆</li>
+			  <li>杭州</li>
+			  <li>海南</li>
+			  <li>香港</li>
+			</ul>
+		</div>
+		<div class="weather">
+			<ul class="show">
+				<li class="pic"><i class="iconfont today">&#xe60e;</i></li>
+				<li class="datey">2014/03/21</li>
+				<li class="details">晴转霾</li>
+				<li class="temperature">8℃~20℃</li>
+				<li class="wind">西风2级</li>
+			</ul>
+		</div>
+		<div id="quote">
+			<div class="content">
+				<i class="fa fa-quote-left fa-2x" aria-hidden="true">
+				</i>
+				<span class="text"></span>
+			</div>
+			<div class="name"><em></em></div>
+			<ul class="icon">
+				<li><i class="fa fa-github" aria-hidden="true"></i></li>
+				<li><i class="fa fa-weibo" aria-hidden="true"></i></li>
+				<li class="btn" title="Click Change The Color">New quote</li>
+			</ul>
+		</div>
+	</div>
+	<div class="future">
 		<ul>
-			<li class="active" id="li1">ABOUT</li>
-			<li id="li2">PORTFOLIO</li>
-			<li id="li3">CONTACT</li>
+			<li>
+				<ul class="show">
+					<li class="pic"><i class="iconfont">&#xe60e;</i></li>
+					<li class="datey">2014/03/21</li>
+					<li class="details">晴转霾</li>
+					<li class="temperature">8℃~20℃</li>
+					<li class="wind">西风2级</li>
+				</ul>
+			</li>
+			<li>
+				<ul class="show">
+					<li class="pic"><i class="iconfont">&#xe60e;</i></li>
+					<li class="datey">2014/03/21</li>
+					<li class="details">晴转霾</li>
+					<li class="temperature">8℃~20℃</li>
+					<li class="wind">西风2级</li>
+				</ul>
+			</li>
+			<li>
+				<ul class="show">
+					<li class="pic"><i class="iconfont">&#xe60e;</i></li>
+					<li class="datey">2014/03/21</li>
+					<li class="details">晴转霾</li>
+					<li class="temperature">8℃~20℃</li>
+					<li class="wind">西风2级</li>
+				</ul>
+			</li>
+			<li>
+				<ul class="show">
+					<li class="pic"><i class="iconfont">&#xe60e;</i></li>
+					<li class="datey">2014/03/21</li>
+					<li class="details">晴转霾</li>
+					<li class="temperature">8℃~20℃</li>
+					<li class="wind">西风2级</li>
+				</ul>
+			</li>
+			<li>
+				<ul class="show">
+					<li class="pic"><i class="iconfont">&#xe60e;</i></li>
+					<li class="datey">2014/03/21</li>
+					<li class="details">晴转霾</li>
+					<li class="temperature">8℃~20℃</li>
+					<li class="wind">西风2级</li>
+				</ul>
+			</li>
+			<li>
+				<ul class="show">
+					<li class="pic"><i class="iconfont">&#xe60e;</i></li>
+					<li class="datey">2014/03/21</li>
+					<li class="details">晴转霾</li>
+					<li class="temperature">8℃~20℃</li>
+					<li class="wind">西风2级</li>
+				</ul>
+			</li>
 		</ul>
 	</div>
-	<div class="wrapper">
-		<div class="con about" id="abo">
-			<span>ABOUT</span>
-		</div>
-		<div class="con portfolio" id="prot">
-			<span>PORTFOLIO</span>
-		</div>
-		<div class="con contact" id="con">
-			<span>CONTACT ME</span>
-			<div class="contact-input">
-				<form action="" onsubmit="return false">
-					<div><label>Name</label><input type="text" placeholder="Name" id="name" autocomplete="off"></div>
-					<div><label>Email Address</label><input type="text" placeholder="Email Address" id="emali" autocomplete="off"></div>
-					<div><label>Phone Number</label><input type="text" placeholder="Phone Number" id="phone" autocomplete="off"></div>
-					<div><label>Message</label><textarea rows="4" placeholder="Message" id="meg"></textarea></div>
-					<div class="btn"><input type="submit" id="send" value="send"></div>
-				</form>
-			</div>
-		</div>
-	</div>
-	<div class="last">
-		<div class="left">
-			<span>ABOUT THIS PAGE</span>
-			<div>
-				Made with <i class="fa fa-coffee"></i> and <i class="fa fa-music"></i><br>
-				 by <em>LINMORY</em>.
-			</div>
-		</div>
-		<div class="right">
-			<span>AROUND THE WEB</span>
-			<div class="brand">
-				<i class="fa fa-weibo" aria-hidden="true"></i>
-				<i class="fa fa-qq" aria-hidden="true"></i>
-				<i class="fa fa-github" aria-hidden="true"></i> 
-				<i class="fa fa-weixin" aria-hidden="true"></i>
-			</div>
-		</div>
-	</div>
-	<div class="end">
-			The Mystery Shack
-	</div>
+	<div style="clear:both;"></div>
+	<div id="me">by linmory</div>
+	<script src="lmy.js"></script>
 	<script type="text/javascript">
-		var lilist = document.getElementsByTagName('li');
-		var ul = document.getElementsByTagName('ul')[0];
-		var form = document.getElementsByTagName('form')[0];
-		var inputlist = document.getElementsByTagName('input');
-		var text = document.getElementsByTagName('textarea')[0];
-		window.onload = function (){
-			window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+		var body = document.body;
+		var div = document.getElementById("quote");
+		var em = document.getElementsByTagName("em")[0];
+		var divname = document.getElementsByClassName("name")[0];
+		var text = document.getElementsByClassName("text")[0];
+		var content = document.getElementsByClassName("content")[0];
+		var i = document.getElementsByTagName("i")[1];
+		var li = document.querySelectorAll(".icon > li");
+		var btn = document.getElementsByClassName("btn")[0];
+		var city = document.getElementsByClassName("city")[0];
+		var citylist = document.getElementById("city-id");
+		var input = document.getElementsByTagName("input")[0];
+		var showlist=document.querySelectorAll(".show > li");
+		var showi = document.querySelectorAll(".show i");
+		var colors = ['#16a085', '#27ae60', '#2c3e50', '#f39c12', '#e74c3c', '#9b59b6', '#FB6964', '#342224', "#472E32", "#BDBB99", "#77B1A9", "#73A857"];
+		var item = ["iconfont","datey","details","temperature","wind"];
+		var unicode ={
+			"晴":"&#xe60e;",
+			"阴":"&#xe61a;",
+			"多云":"&#xe60c;",
+			"小雨":"&#xe615;",
+			"小雪":"&#xe614;",
+			"阵雨":"&#xe615;",
+			"阵雪":"&#xe614;",
+			"中雨":"&#xe61c;",
+			"中雪":"&#xe61d;",
+			"大雨":"&#xe60d;",
+			"大雪":"&#xe60f;",
+			"雷雨":"&#xe60a;",
+			"暴雨":"&#xe60b;",
+			"冰雹":"&#xe609;",
+			"雨":"&#xe615;",
+			"雪":"&#xe614;"
 		}
-		for(var i = 0 ; i < 3; i ++){
-			inputlist[i].onblur = function (e){
-				e.target.previousElementSibling.style.color = '#eee';
+		var list1 = [body,li[0],li[1],li[2],input];
+		var list2 = [em,text,divname,content,i];
+		var num=Math.floor(Math.random()*12);
+		var quote,author;
+		window.onload = function(){
+			setTimeout(main,200);
+			btn.addEventListener('click',main,false);
+			input.value="南阳";
+			input.style.backgroundColor = "transparent";
+			input.style.color = "#fff";
+			addUrl("http://v.juhe.cn/weather/index","cityname","南阳");
+			input.onfocus=function (){
+				citylist.style.left="0";
+				input.value="";
+				input.style.backgroundColor = "#fff";
 			}
-			inputlist[i].onfocus = function (e){
-				e.target.previousElementSibling.style.color = '#722872';
+			input.onblur=function (){
+				if(input.value!=="")
+				citylist.style.left="-1000px";
+			}
+			citylist.onclick = function (e){
+				var event = e || window.event;
+				var target = event.target || event.srcElement;
+				input.value=target.innerHTML;
+				input.onblur();
+				input.style.backgroundColor = colors[num];
+				input.style.color = "#fff";
+				addUrl("http://v.juhe.cn/weather/index","cityname",input.value);
 			}
 		}
-		text.onblur = function (e){
-				e.target.previousElementSibling.style.color = '#eee';
-			}
-		text.onfocus = function (e){
-				e.target.previousElementSibling.style.color = '#722872';
-			}
-		form.onkeyup = function(e){
-			var event = e || window.event;
-			if(e.target.value.length != 0){
-				e.target.previousElementSibling.className = "uplabel";
-			}
-			else 
-				e.target.previousElementSibling.className = "";
+		function addUrl(url,name,value){
+			url += (url.indexOf("?") == -1 ? "?" : "&");
+			url += encodeURIComponent(name) + "=" + encodeURIComponent(value);
+			var script = document.createElement("script");
+			script.src = url + "&dtype=json&format=2&key=3068cd2fdc8ddfd6de8bcdf95f0971d4&callback=answer";
+			document.body.insertBefore(script,document.body.firstChild);
 		}
-		function show(x,y){
-			if(x < y){
-				var timer = setInterval(function(){
-					x += 10;
-					var z = 10;
-					if(x >= y){
-						z = y - x + 10; 
+		function answer(data){
+			if(data.reason=="查询成功"||data.reason=="successed!"){
+				document.body.removeChild(document.body.firstChild);
+				data = data.result;
+				var today = data.today;
+				var seven = data.future;
+				show(today);
+				show(seven);
+			}
+		}
+		function show(x){
+			if(!Array.isArray(x)){
+				for(var i = 0;i < item.length;i++){
+					var str = item[i];
+					var ans = x[str];
+					if(str == "datey"){
+						ans=x.date_y;
+						ans=ans.match(/[0-9*]/g);
+						ans=ans.join("");
+						ans = ans.substring(0,4)+"-"+ans.substring(4,6)+"-"+ans.substring(6);
 					}
-					window.scrollBy(0,z);
-					if(window.pageYOffset >= y)clearInterval(timer);
-				},10);
-			}
-			else {
-				var timer = setInterval(function(){
-					x -= 10;
-					var z = 10;
-					if(x <= y){
-						z = x + 10 - y; 
+					else if(str == "details")
+						ans = x["weather"];
+					else if(str == "iconfont"){
+						ans = x["weather"].replace(/转.*/,"");
+						ans = unicode[ans];
+						if(ans==undefined)ans=unicode.阴;
 					}
-					window.scrollBy(0,-z);
-					if(window.pageYOffset <= y)clearInterval(timer);
-				},10);
+					var sli =document.getElementsByClassName(str)[0];
+					sli.innerHTML=ans;
+					sli.style.opacity = 1;
+					sli.style.animation="mychange2 1.5s ease-in";
+				}
+			}else {
+				for(var j = 1;j < 7;j ++){
+					for(var i = 0;i < item.length;i++){
+						var str = item[i];
+						var ans = x[j][str];
+						if(str == "datey"){
+							ans=x[j]["date"];
+							ans=ans.match(/[0-9*]/g);
+							ans=ans.join("");
+							ans = ans.substring(0,4)+"-"+ans.substring(4,6)+"-"+ans.substring(6);
+						}
+						else if(str == "details")
+							ans = x[j]["weather"];
+						else if(str == "iconfont"){
+							ans = x[j]["weather"].replace(/转.*/,"");
+							ans = unicode[ans];
+							if(ans==undefined)ans=unicode.阴;
+						}
+						var sli=document.getElementsByClassName(item[i])[j];
+						sli.innerHTML=ans;
+						sli.style.opacity = 1;
+						sli.style.animation="mychange2 1.5s ease-in";
+					}
+				}
+			}
+			setTimeout(setOpcty,1500);
+		}
+		function setOpcty(){
+			for(var i =0 ;i < showlist.length;i++){
+				showlist[i].style.animation="";
+			}
+			for(var i =0 ;i < showi.length;i++){
+				showi[i].style.animation="";
 			}
 		}
-		ul.onclick = function (e){
-			var event = e || window.event;
-			for(var i = 0; i < lilist.length; i ++){
-				lilist[i].className = "";
+		function main(){
+			var xmlhttp = createXHR();
+			update(xmlhttp);
+		}
+		function changeColor(color){
+			for(var i=0;i<list1.length;i++){
+					list1[i].style.backgroundColor = color;
 			}
-			event.target.className = 'active';
-			var str = event.target.id;
-			// console.log(str);
-			if(str == 'li1'){
-				var x =  window.pageYOffset;
-				var y = 0;
-				show(x,y);
+			for(var i=0;i<list2.length;i++){
+					list2[i].style.color = color;
+					list2[i].style.opacity = 1;
+					list2[i].style.animation="mychange 1.1s ease-in";
 			}
-			else if(str == 'li2'){
-				var x =  window.pageYOffset;
-				var y = 600;
-				show(x,y);
+			setTimeout(function (){
+				for(var i=0;i<list2.length;i++){
+					list2[i].style.animation="";
 			}
-			else if(str == 'li3'){
-				var x =  window.pageYOffset;
-				var y = 1200;
-				show(x,y);
+			},1000);
+		}
+		function update(xmlhttp){
+			xmlhttp.onreadystatechange = function (){
+				if(xmlhttp.status == 200 && xmlhttp.readyState ==4){
+					response(xmlhttp.responseText);
+				}
 			}
+			xmlhttp.open("GET","https://andruxnet-random-famous-quotes.p.mashape.com/cat=",true);
+			xmlhttp.setRequestHeader("X-Mashape-Key", "OivH71yd3tmshl9YKzFH7BTzBVRQp1RaKLajsnafgL2aPsfP9V");
+			xmlhttp.setRequestHeader("Accept", "application/json");
+			xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+			xmlhttp.send();
+		}
+		function response(data){
+			if(typeof data === "string"){
+				data=JSON.parse(data);
+			}
+			if(Array.isArray(data)){
+				data = data[0];
+			}
+			quote=data.quote;
+			author=data.author;
+			if(quote!=undefined&&author!=undefined){
+				addquote(quote, author);
+				num=Math.floor(Math.random()*12);
+				changeColor(colors[num]);
+			}
+		}
+		function addquote(quote,author){
+			em.innerHTML=author;
+			text.innerHTML=quote;
 		}
 	</script>
 </body>
