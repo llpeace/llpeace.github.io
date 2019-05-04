@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="http://at.alicdn.com/t/font_1161228_yskxw0he9co.css">
+	<link rel="stylesheet" href="https://at.alicdn.com/t/font_1161228_yskxw0he9co.css">
 	<title>Myquote&MyWheather</title>
 	<style>
 		*{
@@ -374,7 +374,7 @@
 	</div>
 	<div style="clear:both;"></div>
 	<div id="me">by linmory</div>
-	<script src="lmy.js"></script>
+	<script src="./js/lmy.js"></script>
 	<script type="text/javascript">
 		var body = document.body;
 		var div = document.getElementById("quote");
@@ -420,7 +420,7 @@
 			input.value="南阳";
 			input.style.backgroundColor = "transparent";
 			input.style.color = "#fff";
-			addUrl("http://v.juhe.cn/weather/index","cityname","南阳");
+			addUrl("https://v.juhe.cn/weather/index","cityname","南阳");
 			input.onfocus=function (){
 				citylist.style.left="0";
 				input.value="";
@@ -437,7 +437,7 @@
 				input.onblur();
 				input.style.backgroundColor = colors[num];
 				input.style.color = "#fff";
-				addUrl("http://v.juhe.cn/weather/index","cityname",input.value);
+				addUrl("https://v.juhe.cn/weather/index","cityname",input.value);
 			}
 		}
 		function addUrl(url,name,value){
